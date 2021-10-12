@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+  
+  }
+  
+  body{
+    background-image: url(./multimedia/fondo.jpg);
+    background-size: cover;
+    color: rgb(8, 8, 7);
+    font-family: 'Gemunu Libre', sans-serif;
+    padding: 0  2.5em;
+  
+  }
+  
+  .titulo{
+    text-align: center;
+    font-size: 2.5em;
+  }
+  
+  .roles{
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+  }
+  
+  .enlace{
+    box-shadow: 0 0 20px 0 rgb(255, 255, 255, .8);
+  }
+  
+  .enlace{
+    background: transparent;
+  }
+  
+  .roles select{
+    font-size: 0.5em;
+    width: 30%;
+    padding: .5em;
+    border: none;
+    color: rgb(12, 4, 58);
+    background: rgb(120, 173, 192);
+  
+  }
+  
+  .roles input{
+    font-size: 0.5em;
+    width: 40%;
+    padding: .5em;
+    border: 2, 2;
+    color: rgb(12, 4, 58);
+    background: rgb(120, 173, 192);
+  
+  }
+  
+  .roles button{
+    width: 40%;
+    padding: 1em;
+    background: slateblue;
+    border: 0;
+    text-transform:uppercase;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 5s;
+    font-size: 15px;
+    font-weight: bold;
+    
+  }
+
+  .navbar h1{
+    font: optional;
+    color: white;
+    text-align: center;
+  }
+
+  .navbar{
+    list-style: none;
+    padding: 0;
+    background: #092327;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .navbar li a{
+    text-decoration: none;
+    color:white;
+    padding: 20px;
+    display: block;
+  }
+  
+  .navbar li{
+    display: inline-block;
+    text-align: center;
+  }
+
+  .navbar li a:hover{
+    background: yellowgreen;
+  }
