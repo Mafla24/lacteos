@@ -11,6 +11,8 @@ import {
   
 } from "react-router-dom";
 import Menu from './pages/menu';
+import Productos from './pages/productos';
+import Gestionpd from './pages/gestionpd';
 
 
 function App() {
@@ -25,6 +27,14 @@ function App() {
 
           <Route path="/menu">
             <Menu/>
+          </Route>
+
+          <Route path="/productos">
+            <Productos/>
+          </Route>
+
+          <Route path="/gestionpd">
+            <Gestionpd/>
           </Route>
         </switch>  
       </Router>
