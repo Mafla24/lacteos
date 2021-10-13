@@ -96,3 +96,7 @@
   .navbar li a:hover{
     background: yellowgreen;
   }
+
+  i{
+    cursor: pointer;
+   }
