@@ -1,16 +1,26 @@
 import Header from "../componets/header";
 
+
+
+
+
 function Productos(){
     return (
 
-      
-<div class="container mt-2">
-<div><Header/></div>  
-    <div class="card">
-        <div class="card-body">
-            <span class="h3">Lista de productos</span>
-            <button class="btn btn-dark float-right" routerLink="/adm-producto-AdmProductoNuevo">Agregar</button>
-            <table class="table table-striped mt-2">
+
+
+<div>
+<Header/>     
+
+
+<div className="container mt-2">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+  
+    <div className="card">
+        <div className="card-body">
+            <span className="h3">Lista de productos</span>
+            <button className="btn btn-dark float-right" routerLink="/adm-producto-AdmProductoNuevo">Agregar</button>
+            <table className="table table-striped mt-2">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -63,7 +73,7 @@ function Productos(){
               </table>        </div>
     </div>
 </div>
-
+</div>
 );
     
     
