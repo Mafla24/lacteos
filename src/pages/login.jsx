@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Menu from "./menu";
 
 
 function Login(){
@@ -22,21 +23,22 @@ function Login(){
                     </p>
 
                         <p>
-                            <input name="gmail" id placeholder="Ingrese su Gmail"/>
+                            <input type="email" name="gmail" id placeholder="Ingrese su Gmail"/>
                         </p>
                         
 
                         
 
                     <p>
-                    
-                        <button type="submit" >                               
+                    <Link to="/Menu">
+                        <button type="submit" >  
+                                                       
                             <span className="fab fa-google" aria-placeholder="fab fa-google"  ></span> 
-                            <a href="index.html">Ingresar   </a> 
+                            <a href="Menu">Ingresar   </a> 
                                                           
                                                           
                         </button>
-                        
+                        </Link> 
                     </p>
                     
                 </form>

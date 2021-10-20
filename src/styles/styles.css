@@ -100,3 +100,126 @@
   i{
     cursor: pointer;
    }
+
+   .form-group{
+    font-size: 1.5em;
+    width: 30%;
+    padding: .5em;
+    border: none;
+    color: rgb(12, 4, 58);
+    background: rgb(120, 173, 192);
+  
+   }
+
+   
+    .button{
+      margin-top: 20px;
+      margin-left: 250px;
+   }
+
+   
+   .formulario{
+    font-size: 1.5em;
+    width: 50%;
+    padding: 0.1;
+    border: none;
+    color: rgb(1, 1, 15);
+    background-color:rgb(223, 218, 198);
+    text-align: center;
+    justify-content: center;
+    box-shadow: cornsilk 0 0 20px 0;
+   
+    
+   }
+
+   .formulario p{
+     display: grid;
+     grid-template-columns: 1fr;
+   }
+
+
+   .formulario input{
+    font-size: 0.5em;
+    width: 40%;
+    padding: .5em;
+    border: 2, 2;
+    color: rgb(21, 18, 37);
+    background: rgb(120, 173, 192);
+   }
+
+   .formulario button{
+    width: 20%;
+    padding: 1em;
+    background: slateblue;
+    border: 0;
+    text-transform:uppercase;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 5s;
+    font-size: 15px;
+    font-weight: bold;
+    
+    
+  }
+
+  .formulario h4{
+    text-align: center;
+  }
+
+  .tabla{
+    background-color:transparent;
+  }
+ 
+  .tabla h1{
+    text-align: center;
+  
+  }
+
+  .tabla button{
+    text-align: center;
+    width: 20%;
+    padding: 1em;
+    background: slateblue;
+    border: 0;
+    text-transform:uppercase;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 5s;
+    font-size: 15px;
+    font-weight: bold;
+  
+  }
+
+  .tablaventas{
+    text-align: center;
+    font-size: large;
+
+
+  }
+  .mostrartabla{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:x-large;
+    background-color: rgb(220, 241, 239);
+  }
+
+  .mostrartabla th, td {
+    width: 5em;
+    text-align: left;
+ }
+
+ .formulario select{
+  font-size: 0.5em;
+  width: 40%;
+  padding: .5em;
+  border: 2, 2;
+  color: rgb(21, 18, 37);
+  background: rgb(120, 173, 192);
+ }
+
+ 
+
+
+
+  

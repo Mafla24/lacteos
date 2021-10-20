@@ -1,6 +1,8 @@
+
 import './styles/styles.css';
 import Login from './pages/login';
-import Header from './componets/header';
+
+
 
 
 
@@ -13,6 +15,8 @@ import {
 import Menu from './pages/menu';
 import Productos from './pages/productos';
 import Gestionpd from './pages/gestionpd';
+import Usuariorg from './pages/usuariorg';
+import Ventas from './pages/ventas';
 
 
 function App() {
@@ -21,9 +25,9 @@ function App() {
       
       <Router>
         <switch>
-          <Route path="/login">
+          <Route path={["/login", "/login"]}>
           <Login/>
-          </Route>
+          </Route> 
 
           <Route path="/menu">
             <Menu/>
@@ -35,6 +39,14 @@ function App() {
 
           <Route path="/gestionpd">
             <Gestionpd/>
+          </Route>
+
+          <Route path="/usuariorg">
+            <Usuariorg/>
+          </Route>
+
+          <Route path="/ventas">
+            <Ventas/>
           </Route>
         </switch>  
       </Router>
