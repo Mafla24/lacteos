@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react/cjs/react.development";
-import Header from "../componets/header";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -53,7 +52,6 @@ useEffect(() => {
     return (
         
             <div className="tabla">
-                <Header/>
             <div>   
             <h1>Ventas</h1>
             <button onClick = {()=>{setMostrarTabla(!mostrarTabla);
