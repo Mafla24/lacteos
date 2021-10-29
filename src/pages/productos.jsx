@@ -1,4 +1,3 @@
-import Header from "../componets/header";
 
 
 
@@ -9,8 +8,7 @@ function Productos(){
 
 
 
-<div>
-<Header/>     
+<div>   
 
 
 <div className="container mt-2">

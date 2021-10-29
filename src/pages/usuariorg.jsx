@@ -1,4 +1,26 @@
+import React, { useState } from 'react'
+import { createUser } from '../services/UsersService'
+import { useHistory } from 'react-router';
+
+const initialValue = {
+    email: '',
+    password: '', 
+    isAdmin: '', 
+    status: '', 
+    name: '', 
+    tel: ''
+}
+
 function Usuariorg(){
+    const [newUser, setNewUser] = useState(initialValue);
+    const {email, password, isAdmin, status, name, tel} = newUser;
+
+    let history = useHistory();
+
+    const onValueChange = (e) => {
+        setNewUser({ ...newUser, [e.target.name]: e.target.value });
+    }
+
     return (
         <div>
             
@@ -11,7 +33,7 @@ function Usuariorg(){
     <form>
         <div class="form-group"> 
             <label for="full_name_id" class="control-label"><b>Nombre</b></label>
-            <input type="text" class="form-control" id="full_name_id" placeholder="Ingresa tu nombre"/>
+            <input type="text" value={name} onChange={(e) => onValueChange(e)} class="form-control" id="full_name_id" placeholder="Ingresa tu nombre"/>
         </div>  
         <div class="form-group"> 
             <label for="full_name_id" class="control-label"><b>Telefono</b></label>

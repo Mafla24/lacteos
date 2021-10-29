@@ -1,4 +1,4 @@
-
+import Header from "./componets/header";
 import './styles/styles.css';
 import Login from './pages/login';
 
@@ -12,7 +12,7 @@ import {
   Route,
   
 } from "react-router-dom";
-import Menu from './pages/menu';
+import Home from './pages/home';
 import Productos from './pages/productos';
 import Gestionpd from './pages/gestionpd';
 import Usuariorg from './pages/usuariorg';
@@ -20,17 +20,15 @@ import Ventas from './pages/ventas';
 
 
 function App() {
-  return (
-    <div className="App">
-      
-      <Router>
-        <switch>
+  return (<Router>
+      <Header />
+        <Switch>
           <Route path={["/login", "/login"]}>
           <Login/>
           </Route> 
 
-          <Route path="/menu">
-            <Menu/>
+          <Route path="/home">
+            <Home/>
           </Route>
 
           <Route path="/productos">
@@ -48,11 +46,8 @@ function App() {
           <Route path="/ventas">
             <Ventas/>
           </Route>
-        </switch>  
+        </Switch>  
       </Router>
-      
-        
-    </div>
   );
 }
 
