@@ -86,7 +86,7 @@ const useStyle = makeStyles({
   },
   tabs: {
     color: "#FFFFFF",
-    marginRight: 10,
+    marginRight: 20,
     textDecoration: "none",
     fontSize: 20,
   },
