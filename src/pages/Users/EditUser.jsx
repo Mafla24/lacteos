@@ -44,10 +44,10 @@ export function EditUser() {
 
   useEffect(() => {
     verifyToken();
-    loadProductData();
+    loadUserData();
   }, []);
 
-  const loadProductData = async () => {
+  const loadUserData = async () => {
     let response = await getUser(id);
     setUser(response.data.data);
   };
