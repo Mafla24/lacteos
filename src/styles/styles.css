@@ -217,9 +217,13 @@
   color: rgb(21, 18, 37);
   background: rgb(120, 173, 192);
  }
-
  
+ .button2{
+  margin-top: 20px;
+  margin-left: 160px;
+}
 
-
-
-  
+.container{
+  align-items: center;
+  width: 30%;
+}
