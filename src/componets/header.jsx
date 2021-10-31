@@ -92,7 +92,7 @@ const useStyle = makeStyles({
   },
   tab_end: {
     color: "#FFFFFF",
-    marginRight: 20,
+    marginRight: 10,
     textDecoration: "none",
     fontSize: 20,
     alignItems: "end",
@@ -135,7 +135,7 @@ export function Header() {
             <NavLink className={classes.tabs} to="/ventas">
               Gestion Ventas
             </NavLink>
-            <NavLink className={classes.tabs} to="/Gestionusu">
+            <NavLink className={classes.tabs} to="/usuarios">
               Gestion Usuarios
             </NavLink>
           </Box>
