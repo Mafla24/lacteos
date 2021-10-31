@@ -4,7 +4,7 @@ import {Header} from "./componets/header";
 import "./styles/styles.css";
 
 import Login from "./pages/login";
-import {Home} from "./pages/Home";
+import {Home} from "./pages/home";
 import {UserList} from "./pages/Users/UserList";
 import {EditUser} from "./pages/Users/EditUser";
 import Productos from "./pages/productos";
