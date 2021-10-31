@@ -135,7 +135,7 @@ export function Header() {
             <NavLink className={classes.tabs} to="/ventas">
               Gestion Ventas
             </NavLink>
-            <NavLink className={classes.tabs} to="/Gestionusu">
+            <NavLink className={classes.tabs} to="/usuarios">
               Gestion Usuarios
             </NavLink>
           </Box>

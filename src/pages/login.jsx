@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 const initialValue = {
   email: "",
-  password: "",
+  password: ""
 };
 
 function Login() {

@@ -10,6 +10,15 @@ const useStyles = makeStyles({
     padding: "4%",
     margin: "100px auto 0 auto",
   },
+  input: {
+    padding:"4%"
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "15px",
+    marginTop: "5px"
+  },
 });
 
 const initialValue = {
@@ -43,7 +52,7 @@ function Usuariorg() {
   return (
     <Paper className={classes.container}>
       <Typography variant="h4">Formulario de registro</Typography>
-      <Grid container spacing={8} error alignItems="flex-end">
+      <Grid container spacing={8} error alignItems="flex-end" className={classes.input}>
         <Grid item md={true} sm={true} xs={true}>
           <TextField
             value={name}
@@ -55,7 +64,7 @@ function Usuariorg() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={8} alignItems="flex-end">
+      <Grid container spacing={8} alignItems="flex-end" className={classes.input}>
         <Grid item md={true} sm={true} xs={true}>
           <TextField
             value={tel}
@@ -67,7 +76,7 @@ function Usuariorg() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={8} alignItems="flex-end">
+      <Grid container spacing={8} alignItems="flex-end" className={classes.input}>
         <Grid item md={true} sm={true} xs={true}>
           <TextField
             value={email}
@@ -81,7 +90,7 @@ function Usuariorg() {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={8} alignItems="flex-end">
+      <Grid container spacing={8} alignItems="flex-end" className={classes.input}>
         <Grid item md={true} sm={true} xs={true}>
           <TextField
             value={password}
@@ -94,7 +103,7 @@ function Usuariorg() {
           />
         </Grid>
       </Grid>
-      <Grid container justify="center" style={{ marginTop: "10px" }}>
+      <Grid container className={classes.button}>
         <Button
           variant="outlined"
           onClick={() => registerUser()}

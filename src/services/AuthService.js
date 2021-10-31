@@ -30,6 +30,6 @@ export const getCurrentUser = () => {
 
 const logout = () => {
     localStorage.clear();
-    window.location = "/";
+    window.location = "/home";
 }
 
