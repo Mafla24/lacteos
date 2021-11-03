@@ -3,14 +3,14 @@ import { getCurrentUser } from "../../services/AuthService";
 import { getUsers, deleteUser } from "../../services/UsersService";
 import { Link } from "react-router-dom";
 import {
+  makeStyles,
   Button,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   table: {

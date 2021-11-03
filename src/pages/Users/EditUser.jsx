@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  makeStyles,
   FormGroup,
   FormControl,
   InputLabel,
@@ -10,8 +11,7 @@ import {
   FormLabel,
   FormControlLabel,
   Radio,
-} from "@mui/material";
-import { makeStyles } from "@mui/styles";
+} from "@material-ui/core";
 import { editUser, getUser } from "../../services/UsersService";
 import { useHistory, useParams } from "react-router-dom";
 import { verifyToken } from "../../services/AuthService";
@@ -45,7 +45,7 @@ export function EditUser() {
   useEffect(() => {
     verifyToken();
     loadUserData();
-  }, []);
+  },[]);
 
   const loadUserData = async () => {
     let response = await getUser(id);

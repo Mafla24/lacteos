@@ -64,8 +64,8 @@ const Header = ()=>{
 }
 export default Header
 */
-import { makeStyles } from "@mui/styles";
 import {
+  makeStyles,
   AppBar,
   Avatar,
   Box,
@@ -74,15 +74,15 @@ import {
   ListItemAvatar,
   ListItemText,
   Toolbar,
-} from "@mui/material";
+} from "@material-ui/core";
+import { blue } from "@material-ui/core/colors";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { getCurrentUser } from "../services/AuthService";
-import { blue } from "@mui/material/colors";
 
 const useStyle = makeStyles({
   header: {
-    background: "#092327",
+    background: "#204d88",
   },
   tabs: {
     color: "#FFFFFF",
@@ -142,12 +142,12 @@ export function Header() {
           {!user && (
             <>
               <NavLink className={classes.tab_end} to="/usuariorg">
-                <Button variant="contained" color="success">
+                <Button variant="contained" color="primary">
                   registrarse
                 </Button>
               </NavLink>
               <NavLink className={classes.tab_end} to="/">
-                <Button variant="contained" color="success">
+                <Button variant="contained" color="primary">
                   Login
                 </Button>
               </NavLink>
@@ -162,13 +162,13 @@ export function Header() {
                       👤
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText secondary={user.email}/>
+                  <ListItemText secondary={user.email} />
                 </ListItem>
               </Button>
               <Button
                 variant="contained"
                 onClick={() => logout()}
-                color="error"
+                color="secondary"
               >
                 Logout
               </Button>

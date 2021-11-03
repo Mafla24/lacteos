@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { createUser } from "../services/UsersService";
 import { useHistory } from "react-router-dom";
-import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {

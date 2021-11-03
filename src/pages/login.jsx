@@ -1,5 +1,4 @@
-import { makeStyles } from "@mui/styles";
-import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { makeStyles, Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { loginAuth } from "../services/AuthService";
 
