@@ -1,74 +1,95 @@
+import { makeStyles, Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { loginAuth } from "../services/AuthService";
 
+const useStyles = makeStyles({
+  container: {
+    width: "300px",
+    padding: "4%",
+    margin: "100px auto 0 auto",
+  },
+  input: {
+    padding:"4%"
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "15px",
+    marginTop: "5px"
+  },
+});
+
 const initialValue = {
   email: "",
-  password: "",
+  password: ""
 };
 
 function Login() {
-  const [datosUsuario, setDatosUsuario] = useState(initialValue);
-  const { email, password } = datosUsuario;
-  const controlarCambioValor = (e) => {
-    setDatosUsuario({ ...datosUsuario, [e.target.name]: e.target.value });
+  const [credentials, setCredentials] = useState(initialValue);
+  const { email, password } = credentials;
+  const classes = useStyles();
+  const onValueChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const startLogin = async () => {
-    let respuesta = await loginAuth(datosUsuario);
+    let respuesta = await loginAuth(credentials);
     if (respuesta.status === 200) {
       let token = respuesta.data.token;
       localStorage.setItem("token", token);
-      window.location = "/";
+      window.location = "/home";
     }
   };
 
   return (
-      <div className="titulo">
-        <h1>
-          Grupo 2 <span></span>
-        </h1>
-
-        <div className="enlace">
-          <div className="roles">
-            <form action="">
-              <p>
-                <input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => controlarCambioValor(e)}
-                  id
-                  placeholder="Ingrese su Email"
-                />
-              </p>
-              <p>
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => controlarCambioValor(e)}
-                  id
-                  placeholder="Ingrese su Password"
-                />
-              </p>
-
-              <p>
-                <button onClick={() => startLogin()}>Ingresar</button>
-              </p>
-
-              <p>
-                <button type="submit">
-                  <span
-                    className="fab fa-google"
-                    aria-placeholder="fab fa-google"
-                  ></span>
-                  <a href="Menu">Ingresar con Google </a>
-                </button>
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
+    <Paper className={classes.container}>
+      <Typography variant="h4">Grupo 2</Typography>
+      <Grid container spacing={8} alignItems="flex-end" className={classes.input}>
+        <Grid item md={true} sm={true} xs={true}>
+          <TextField
+            value={email}
+            name="email"
+            onChange={(e) => onValueChange(e)}
+            label="Email"
+            type="email"
+            fullWidth
+            autoFocus
+            required
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={8} alignItems="flex-end" className={classes.input}>
+        <Grid item md={true} sm={true} xs={true}>
+          <TextField
+            value={password}
+            name="password"
+            onChange={(e) => onValueChange(e)}
+            label="Password"
+            type="password"
+            fullWidth
+            required
+          />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.button}>
+        <Button
+          variant="outlined"
+          onClick={() => startLogin()}
+          color="primary"
+          style={{ textTransform: "none" }}
+        >
+          Iniciar sesión
+        </Button>
+      </Grid>
+      <Grid container  className={classes.button}>
+        <Button
+          variant="contained"
+            color="primary"
+            style={{ textTransform: "none" }}
+          >Ingresar con Gmail
+        </Button>
+        </Grid>
+    </Paper>
   );
 }
 

@@ -1,53 +1,45 @@
-import Header from "./componets/header";
-import './styles/styles.css';
-import Login from './pages/login';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {Header} from "./componets/header";
+import "./styles/styles.css";
 
+import Login from "./pages/login";
+import {Home} from "./pages/home";
+import {UserList} from "./pages/Users/UserList";
+import {EditUser} from "./pages/Users/EditUser";
+import Productos from "./pages/productos";
+import Gestionpd from "./pages/gestionpd";
+import Usuariorg from "./pages/usuariorg";
+import Ventas from "./pages/ventas";
+import { NotFound } from "./pages/NotFound";
 
-
-
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  
-} from "react-router-dom";
-import Home from './pages/home';
-import Productos from './pages/productos';
-import Gestionpd from './pages/gestionpd';
-import Usuariorg from './pages/usuariorg';
-import Ventas from './pages/ventas';
-
+import { getCurrentUser } from "./services/AuthService";
 
 function App() {
-  return (<Router>
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    setUser(getCurrentUser());
+  }, []);
+
+  return (
+    <Router>
       <Header />
-        <Switch>
-          <Route path={["/login", "/login"]}>
-          <Login/>
-          </Route> 
-
-          <Route path="/home">
-            <Home/>
-          </Route>
-
-          <Route path="/productos">
-            <Productos/>
-          </Route>
-
-          <Route path="/gestionpd">
-            <Gestionpd/>
-          </Route>
-
-          <Route path="/usuariorg">
-            <Usuariorg/>
-          </Route>
-
-          <Route path="/ventas">
-            <Ventas/>
-          </Route>
-        </Switch>  
-      </Router>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/productos" component={Productos} />
+        <Route exact path="/usuarios" component={UserList} />
+        <Route exact path="/usuariorg" component={Usuariorg} />
+        {user && (
+          <>
+            <Route exact path="/usuarios/:id" component={EditUser} />
+            <Route exact path="/ventas" component={Ventas} />
+            <Route exact path="/gestionpd" component={Gestionpd} />
+          </>
+        )}
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
