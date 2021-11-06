@@ -31,19 +31,17 @@ const useStyles = makeStyles({
   },
 });
 
-const initialValue = {
-  email: "",
-};
+
 
 export function UserList() {
   const classes = useStyles();
 
-  const [user, setUser] = useState(initialValue);
+  const [user, setUser] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    setUser(getCurrentUser());
     getAllUsers();
+    setUser(getCurrentUser());
   }, []);
 
   const getAllUsers = async () => {
@@ -70,7 +68,6 @@ export function UserList() {
             <TableCell>Email</TableCell>
             <TableCell>isAdmin</TableCell>
             <TableCell>Status</TableCell>
-            {user && (
               <TableCell className={classes.button_add}>
                 <Button
                   variant="contained"
@@ -81,18 +78,17 @@ export function UserList() {
                   Agregar
                 </Button>
               </TableCell>
-            )}
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((user) => (
             <TableRow className={classes.row} key={user._id}>
+              <TableCell>{user._id}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.tel}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.isAdmin ? "Si" : "No"}</TableCell>
               <TableCell>{user.status}</TableCell>
-              {user && (
                 <TableCell>
                   <Button
                     className={classes.button}
@@ -110,7 +106,6 @@ export function UserList() {
                     Eliminar
                   </Button>
                 </TableCell>
-              )}
             </TableRow>
           ))}
         </TableBody>
