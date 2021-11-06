@@ -1,7 +1,7 @@
 import axios from "axios";
 import { authHeaders } from "./AuthService";
 
-const salesUrl = " http://localhost:9000/api/ventas";
+const salesUrl = " http://localhost:4000/ventas";
 
 export const getSale = async (id) => {
     return await axios.get(`${salesUrl}/${id}`, { headers: authHeaders });
