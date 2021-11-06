@@ -1,4 +1,3 @@
-/*
 import React, { useState, useEffect, useRef } from "react/cjs/react.development";
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -247,15 +246,4 @@ const FormularioVentas = ({setMostrarTabla, listaVentas, setVentas})=> {
 export default Ventas;
 
 
-*/
-import React from 'react'
 
-function ventas() {
-    return (
-        <div>
-            hola
-        </div>
-    )
-}
-
-export default ventas
