@@ -8,7 +8,7 @@ export const getUser = async (id) => {
 }
 
 export const getUsers = async () => {
-    return await axios.get(`${usersUrl}`)
+    return await axios.get(`${usersUrl}`, { headers: authHeaders })
 }
 
 export const createUser = async (user) => {

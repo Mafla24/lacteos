@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     fontSize: 18,
   },
   button: {
-    marginInline: "20px",
+    marginInline: "17px",
   },
 });
 
@@ -93,6 +93,7 @@ export function UserList() {
                   <Button
                     className={classes.button}
                     variant="contained"
+                    color="primary"
                     component={Link}
                     to={`usuarios/${user._id}`}
                   >
@@ -100,7 +101,7 @@ export function UserList() {
                   </Button>
                   <Button
                     variant="contained"
-                    color="error"
+                    color="secondary"
                     onClick={() => deleteUserData(user._id)}
                   >
                     Eliminar

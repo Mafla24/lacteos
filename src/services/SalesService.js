@@ -8,7 +8,7 @@ export const getSale = async (id) => {
 }
 
 export const getSales = async () => {
-    return await axios.get(`${salesUrl}/`);
+    return await axios.get(`${salesUrl}/`, { headers: authHeaders });
 }
 
 export const addSale = async (sale) => {
