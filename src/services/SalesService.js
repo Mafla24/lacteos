@@ -1,7 +1,8 @@
 import axios from "axios";
 import { authHeaders } from "./AuthService";
 
-const salesUrl = " http://localhost:4000/ventas";
+const salesUrl = " https://frozen-earth-23023.herokuapp.com/ventas";
+//const salesUrl = " http://localhost:4000/ventas";
 
 export const getSale = async (id) => {
     return await axios.get(`${salesUrl}/${id}`, { headers: authHeaders });
