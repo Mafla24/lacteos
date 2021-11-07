@@ -133,7 +133,7 @@ export function EditSale() {
 }
 
 const deleteProduct = (id) => {
-  let productsCopy = productList.filter(product => product._id !== id);
+  let productsCopy = products.filter(product => product._id !== id);
   setSale({ ...sale, products: productsCopy });
 }
 
