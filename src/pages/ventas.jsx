@@ -1,40 +1,29 @@
 import React, { useState, useEffect, useRef } from "react/cjs/react.development";
-import Header from "../componets/header";
 
 import { ToastContainer, toast } from 'react-toastify';
+import { addSale } from "../services/SalesService";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const ventasBackend = [
-    {
-        idventa: "12345",
-        fecha: "25/05/21",
-        producto: "leche",
-        cantidad:"2",
-        preciounit:"3000",
-        valortotal:"6000",
-        cliente:"leo",
-        vendedor:"esperanza",
-        estado:"cancelada"
-
-    },
-    {
-        idventa: "1234",
-        fecha: "25/05/21",
-        producto: "queso",
-        cantidad:"2",
-        preciounit:"2500",
-        valortotal:"5000",
-        cliente:"luna",
-        vendedor:"johana",
-        estado:"proceso"
+const ventasBackend = {
+        idventa: "",
+        fecha: "",
+        producto: "",
+        cantidad:"",
+        preciounit:"",
+        valortotal:"",
+        cliente:"",
+        vendedor:"",
+        estado:""
 
     }
-]
+    
+
 
 const Ventas = () => {
    const [mostrarTabla, setMostrarTabla] = useState(true);
-   const [ventas, setVentas] = useState([]);
+   const [ventas, setVentas] = useState(ventasBackend);
+   const {idventa, fecha, producto, cantidad, preciounit, valortotal, cliente, vendedor, estado} = ventas;
    const [textoBoton, setTextoBoton] = useState("crear nueva venta");
 
 useEffect(()=>{
@@ -50,10 +39,19 @@ useEffect(() => {
     }
 }, [mostrarTabla]); 
 
+
+const registrarSale = async () => {
+    let response = await addSale(nuevaVenta);
+    if (response.status === 201) {
+      history.push("/");
+    } else {
+      console.error("Error creando la venta" + response.data.error);
+    }
+  };
+
     return (
         
             <div className="tabla">
-                <Header/>
             <div>   
             <h1>Ventas</h1>
             <button onClick = {()=>{setMostrarTabla(!mostrarTabla);
@@ -176,56 +174,56 @@ const FormularioVentas = ({setMostrarTabla, listaVentas, setVentas})=> {
           <form ref={form} onSubmit={submitForm} >
               <p>
               <label htmlFor="idventa">Id venta
-              <input name="idventa" placeholder="Id venta" type="text" required/>
+              <input value={idventa} onChange={this.e} name="idventa" placeholder="Id venta" type="text" required/>
               </label>
               </p>
 
               <p>  
               <label htmlFor="fecha">Fecha
-              <input name="fecha" placeholder="Fecha" type="date" required/>
+              <input  value={fecha} onChange={this.e} name="fecha" placeholder="Fecha" type="date" required/>
               </label>
               </p>
               
 
               <p>
               <label htmlFor="producto">Producto
-              <input name="producto" placeholder="Producto" type="text" required/>
+              <input value={producto} onChange={this.e} name="producto" placeholder="Producto" type="text" required/>
               </label>
               </p>
 
               <p>  
               <label htmlFor="cantidad">Cantidad
-              <input name="cantidad" placeholder="Cantidad" type="number"required/>
+              <input value={cantidad} onChange={this.e} name="cantidad" placeholder="Cantidad" type="number"required/>
               </label>
               </p>
 
               <p>  
               <label htmlFor="preciounit">Precio unitario
-              <input name="preciounit" placeholder="Precio unitario" type="text" required/>
+              <input value={preciounit} onChange={this.e} name="preciounit" placeholder="Precio unitario" type="text" required/>
               </label>
               </p>
 
               <p>  
               <label htmlFor="valort">Valor total
-              <input name="valort" placeholder="Valor total" type="text" required/>
+              <input value={valortotal} onChange={this.e} name="valort" placeholder="Valor total" type="text" required/>
               </label>
               </p>
 
               <p>
               <label htmlFor="cliente">Cliente
-              <input name="cliente" placeholder="Cliente" type="text" required/>
+              <input value={cliente} onChange={this.e} name="cliente" placeholder="Cliente" type="text" required/>
               </label>
               </p>
 
               <p>  
               <label htmlFor="vendedor">Vendedor
-              <input name="vendedor" placeholder="vendedor" type="text" required/>
+              <input value={vendedor} onChange={this.e}  name="vendedor" placeholder="vendedor" type="text" required/>
               </label>
               </p>
               
               <p>
               <label htmlFor="estado">Estado
-              <select name="estado" required defaultValue={0}>
+              <select value={estado} onChange={this.e} name="estado" required defaultValue={0}>
                   <option disabled value={0}>Seleccione una opcion</option>
                   <option>En proceso</option>
                   <option>Cancelada</option>
@@ -234,7 +232,7 @@ const FormularioVentas = ({setMostrarTabla, listaVentas, setVentas})=> {
               </label>
               </p>
              
-              <button type="submit" 
+              <button type="submit" onClick={() => addSale()}
               
               >Guardar venta</button>
           </form>
@@ -246,5 +244,6 @@ const FormularioVentas = ({setMostrarTabla, listaVentas, setVentas})=> {
 }
 
 export default Ventas;
+
 
 

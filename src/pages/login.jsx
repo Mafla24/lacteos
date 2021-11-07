@@ -1,55 +1,130 @@
-import { Link } from "react-router-dom";
-import Menu from "./menu";
+import {
+  makeStyles,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import React, { useState } from "react";
+import { loginAuth } from "../services/AuthService";
+import { GoogleLogin } from "react-google-login";
 
+const useStyles = makeStyles({
+  container: {
+    width: "300px",
+    padding: "4%",
+    margin: "100px auto 0 auto",
+  },
+  input: {
+    padding: "4%",
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "15px",
+    marginTop: "5px",
+  },
+});
 
-function Login(){
- return (   
-<div className="titulo">
-        
-        <h1>Grupo 2 <span></span></h1>
+const initialValue = {
+  email: "",
+  password: "",
+};
 
+function Login() {
 
-        <div className="enlace">
-            <div className="roles">
-                <form action="">
-                    <p>
-                        <label for="rol">¿Quien eres?</label>
-                        
-                        <select>
-                            <option>             </option>
-                            <option>Administrador</option>
-                            <option> Vendedor</option>
-                        </select>
-                    </p>
+  
+  const responseGoogleFailure = (response)=>{
+    console.log(response);
+  }
+  
+  const [credentials, setCredentials] = useState(initialValue);
+  const { email, password } = credentials;
+  const classes = useStyles();
 
-                        <p>
-                            <input type="email" name="gmail" id placeholder="Ingrese su Gmail"/>
-                        </p>
-                        
+  const onValueChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-                        
+  const responseGoogle = async (response) => {
+    const email = response.profileObj.email;
+    const password = response.profileObj.email;
+    setCredentials({ email, password});
+    console.log(credentials);
+    startLogin();
+  };
 
-                    <p>
-                    <Link to="/Menu">
-                        <button type="submit" >  
-                                                       
-                            <span className="fab fa-google" aria-placeholder="fab fa-google"  ></span> 
-                            <a href="Menu">Ingresar   </a> 
-                                                          
-                                                          
-                        </button>
-                        </Link> 
-                    </p>
-                    
-                </form>
+  const startLogin = async () => {
+    let respuesta = await loginAuth(credentials);
+    if (respuesta.status === 200) {
+      let token = respuesta.data.token;
+      localStorage.setItem("token", token);
+      window.location = "/home";
+    }
+  };
 
-            </div>
-        </div>   
-
-    
-</div> )
-
+  return (
+    <Paper className={classes.container}>
+      <Typography variant="h4">Grupo 2</Typography>
+      <Grid
+        container
+        spacing={8}
+        alignItems="flex-end"
+        className={classes.input}
+      >
+        <Grid item md={true} sm={true} xs={true}>
+          <TextField
+            value={email}
+            name="email"
+            onChange={(e) => onValueChange(e)}
+            label="Email"
+            type="email"
+            fullWidth
+            autoFocus
+            required
+          />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        spacing={8}
+        alignItems="flex-end"
+        className={classes.input}
+      >
+        <Grid item md={true} sm={true} xs={true}>
+          <TextField
+            value={password}
+            name="password"
+            onChange={(e) => onValueChange(e)}
+            label="Password"
+            type="password"
+            fullWidth
+            required
+          />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.button}>
+        <Button
+          variant="outlined"
+          onClick={() => startLogin()}
+          color="primary"
+          style={{ textTransform: "none" }}
+        >
+          Iniciar sesión
+        </Button>
+      </Grid>
+      <Grid container className={classes.button}>
+        <GoogleLogin
+          clientId="197549320771-3350d8uvuab2bhln8n6afp67um90ocs4.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogleFailure}
+          cookiePolicy={"single_host_origin"}
+        />
+      </Grid>
+    </Paper>
+  );
 }
-
 
 export default Login;
