@@ -1,7 +1,8 @@
 import axios from "axios";
 import { authHeaders } from "./AuthService";
 
-const usersUrl = "http://localhost:4000/usuarios";
+const usersUrl = "https://frozen-earth-23023.herokuapp.com/usuarios";
+//const usersUrl = "http://localhost:4000/usuarios";
 
 export const getUser = async (id) => {
     return await axios.get(`${usersUrl}/${id}`, { headers: authHeaders });

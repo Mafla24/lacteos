@@ -2,7 +2,8 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 
-const authUrl = "http://localhost:4000/auth/";
+const authUrl = "https://frozen-earth-23023.herokuapp.com/auth/";
+//const authUrl = "http://localhost:4000/auth/";
 
 export const authHeaders = {
     "auth-token":localStorage.getItem("token") 
