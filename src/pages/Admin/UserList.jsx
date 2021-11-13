@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getCurrentUser } from "../../services/AuthService";
 import { getUsers, deleteUser } from "../../services/UsersService";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
   table: {
@@ -35,13 +35,11 @@ const useStyles = makeStyles({
 
 export function UserList() {
   const classes = useStyles();
-
-  const [user, setUser] = useState([]);
+  const { isAuthenticated } = useAuth0();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     getAllUsers();
-    setUser(getCurrentUser());
   }, []);
 
   const getAllUsers = async () => {
@@ -63,32 +61,35 @@ export function UserList() {
         <TableHead>
           <TableRow className={classes.thead}>
             <TableCell>Id</TableCell>
-            <TableCell>Nombre</TableCell>
-            <TableCell>Teléfono</TableCell>
             <TableCell>Email</TableCell>
+            <TableCell>Nombre</TableCell>
+            <TableCell>Telefono</TableCell>
             <TableCell>isAdmin</TableCell>
-            <TableCell>Status</TableCell>
-              <TableCell className={classes.button_add}>
-                <Button
-                  variant="contained"
-                  color="success"
-                  component={Link}
-                  to="usuariorg"
-                >
-                  Agregar
-                </Button>
-              </TableCell>
+            <TableCell>Estado</TableCell>
+            {isAuthenticated && (
+            <TableCell className={classes.button_add}>
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="registro"
+              >
+                Agregar
+              </Button>
+            </TableCell>
+          )}
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((user) => (
             <TableRow className={classes.row} key={user._id}>
               <TableCell>{user._id}</TableCell>
+              <TableCell>{user.email}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.tel}</TableCell>
-              <TableCell>{user.email}</TableCell>
               <TableCell>{user.isAdmin ? "Si" : "No"}</TableCell>
               <TableCell>{user.status}</TableCell>
+              {isAuthenticated && (
                 <TableCell>
                   <Button
                     className={classes.button}
@@ -107,6 +108,7 @@ export function UserList() {
                     Eliminar
                   </Button>
                 </TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

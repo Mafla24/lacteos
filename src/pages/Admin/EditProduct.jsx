@@ -12,9 +12,8 @@ import {
   FormControlLabel,
   Radio,
 } from "@material-ui/core";
-import { addProduct } from "../../services/ProductService";
-import { useHistory } from "react-router-dom";
-import { getCurrentUser, verifyToken } from "../../services/AuthService";
+import { editProduct, getProduct } from "../../services/ProductService";
+import { useHistory, useParams } from "react-router-dom";
 
 const initialValue = {
   name: "",
@@ -33,19 +32,22 @@ const useStyles = makeStyles({
   },
 });
 
-export function CreateProduct() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    verifyToken();
-    setUser(getCurrentUser());
-  }, []);
-
+export function EditProduct() {
   const [product, setProduct] = useState(initialValue);
   const { name, desc, price, state } = product;
-
   const classes = useStyles();
   let history = useHistory();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    loadProductData();
+  }, []);
+
+  const loadProductData = async () => {
+    let response = await getProduct(id);
+    setProduct(response.data.data);
+  };
 
   const onValueChange = (e) => {
     e.preventDefault();
@@ -56,14 +58,14 @@ export function CreateProduct() {
     setProduct({ ...product, state: state });
   };
 
-  const addProductData = async () => {
-    await addProduct(product);
+  const updateProductData = async () => {
+    await editProduct(product);
     history.push("/productos");
   };
 
   return (
     <FormGroup className={classes.container}>
-      <Typography variant="h4">Agregar Producto</Typography>
+      <Typography variant="h4">Editar Producto</Typography>
       <FormControl>
         <InputLabel htmlFor="my-input">Nombre</InputLabel>
         <Input
@@ -115,10 +117,10 @@ export function CreateProduct() {
       <FormControl>
         <Button
           variant="contained"
-          onClick={(e) => addProductData()}
+          onClick={() => updateProductData()}
           color="primary"
         >
-          Agregar Producto
+          Editar Producto
         </Button>
       </FormControl>
     </FormGroup>
