@@ -7,8 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { loginAuth } from "../services/AuthService";
-import { GoogleLogin } from "react-google-login";
+import { loginAuth } from "../../services/AuthService";
 
 const useStyles = makeStyles({
   container: {
@@ -33,11 +32,6 @@ const initialValue = {
 };
 
 function Login() {
-
-  
-  const responseGoogleFailure = (response)=>{
-    console.log(response);
-  }
   
   const [credentials, setCredentials] = useState(initialValue);
   const { email, password } = credentials;
@@ -45,14 +39,6 @@ function Login() {
 
   const onValueChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-
-  const responseGoogle = async (response) => {
-    const email = response.profileObj.email;
-    const password = response.profileObj.email;
-    setCredentials({ email, password});
-    console.log(credentials);
-    startLogin();
   };
 
   const startLogin = async () => {
@@ -113,15 +99,13 @@ function Login() {
         >
           Iniciar sesión
         </Button>
-      </Grid>
-      <Grid container className={classes.button}>
-        <GoogleLogin
-          clientId="197549320771-3350d8uvuab2bhln8n6afp67um90ocs4.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogleFailure}
-          cookiePolicy={"single_host_origin"}
-        />
+        <Button
+          variant="outlined"
+          color="primary"
+          style={{ textTransform: "none" }}
+        >
+          Google
+        </Button>
       </Grid>
     </Paper>
   );

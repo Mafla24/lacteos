@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { getSales, deleteSale } from "../../services/SalesService";
 import { Link } from "react-router-dom";
-import { getCurrentUser } from "../../services/AuthService";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles({
   table: {
@@ -43,12 +43,11 @@ const useStyles = makeStyles({
 export function SalesList() {
   const classes = useStyles();
 
-  const [user, setUser] = useState([]);
+  const { isAuthenticated } = useAuth0();
   const [sales, setSales] = useState([]);
 
   useEffect(() => {
     loadSalesData();
-    setUser(getCurrentUser());
   }, []);
 
   const loadSalesData = async () => {
@@ -73,7 +72,7 @@ export function SalesList() {
           <TableCell>Id Cliente</TableCell>
           <TableCell>Nombre Cliente</TableCell>
           <TableCell>Id Vendedor</TableCell>
-          {user && (
+          {isAuthenticated && (
             <TableCell className={classes.button_add}>
               <Button
                 variant="contained"
@@ -95,7 +94,7 @@ export function SalesList() {
             <TableCell>{sale.clientId}</TableCell>
             <TableCell>{sale.clientName}</TableCell>
             <TableCell>{sale.sellerId}</TableCell>
-            {user && (
+            {isAuthenticated && (
               <TableCell>
                 <Button
                   className={classes.button}

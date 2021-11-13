@@ -18,7 +18,6 @@ import {
 import { editSale, getSale } from '../../services/SalesService';
 import { getProducts } from "../../services/ProductService";
 import { useHistory, useParams } from "react-router-dom";
-import { getCurrentUser } from "../../services/AuthService";
 
 const initialValue = {
   products: [],
@@ -71,12 +70,10 @@ const useStyles = makeStyles({
 export function EditSale() {
   const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useState(null);
 
   const { id } = useParams();
 
   useEffect(() => {
-    setUser(getCurrentUser());
     loadProductsData();
   }, []);
 
@@ -105,6 +102,7 @@ export function EditSale() {
   };
 
   const onValueNewProductChange = (e) => {
+    e.preventDefault();
     if (e.target.name === "_id") {
       let product = productList.find((product) => product._id === e.target.value);
       let newProductCopy = newProduct;
@@ -206,7 +204,7 @@ const changeStateCreateProductForm = (state) => {
                         onChange={(e) => onValueNewProductChange(e)}
                       >
                         {productList.map((product) => (
-                          <MenuItem value={product._id}>{product._id}</MenuItem>
+                          <MenuItem value={product._id}>{product.name}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>

@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.Logo {
+  height: 48px;
+  width: 48px;
+}
+
+body{
+  background-image: url(./styles/multimedia/fondo.jpg);
+  background-size: cover;
+  color: rgb(8, 8, 7);
+  font-family: 'Gemunu Libre', sans-serif;
+  padding: 0  2.5em;
+}
