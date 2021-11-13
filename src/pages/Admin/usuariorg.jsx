@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { createUser } from "../services/UsersService";
+import { createUser } from "../../services/UsersService";
 import { useHistory } from "react-router-dom";
 import { makeStyles, Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
-import { GoogleLogin } from "react-google-login";
 
 const useStyles = makeStyles({
   container: {
     width: "300px",
     padding: "4%",
-    margin: "100px auto 0 auto",
+    margin: "10px auto 0 auto",
   },
   input: {
     padding:"4%"
@@ -38,20 +37,6 @@ function Usuariorg() {
 
   const onValueChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
-  };
-
-  const responseGoogleFailure = (response)=>{
-    console.log(response);
-  }
-
-  const responseGoogle = async (response) => {
-    console.log(response);
-    const name = response.profileObj.name;
-    const email = response.profileObj.email;
-    const password = response.profileObj.email;
-    const tel = "";
-    setNewUser({ name, email, password, tel});
-    registerUser()
   };
 
   const registerUser = async () => {
@@ -127,15 +112,6 @@ function Usuariorg() {
           Registrarse
         </Button>
         </Grid>
-        <Grid container className={classes.button}>
-        <GoogleLogin
-          clientId="197549320771-3350d8uvuab2bhln8n6afp67um90ocs4.apps.googleusercontent.com"
-          buttonText="Registrarse"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogleFailure}
-          cookiePolicy={"single_host_origin"}
-        />
-      </Grid>
     </Paper>
   );
 }

@@ -18,7 +18,7 @@ import {
 import { addSale } from "../../services/SalesService";
 import { getProducts } from "../../services/ProductService";
 import { useHistory } from "react-router-dom";
-import { getCurrentUser } from "../../services/AuthService";
+//import { useAuth0 } from "@auth0/auth0-react";
 
 const initialValue = {
   products: [],
@@ -69,14 +69,15 @@ const useStyles = makeStyles({
 });
 
 export function CreateSale() {
+
   const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useState(null);
+  //const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
-    setUser(getCurrentUser());
     loadProductsData();
   }, []);
+  
 
   const [productList, setProductList] = useState([]);
   const [sale, setSale] = useState(initialValue);
@@ -192,7 +193,7 @@ export function CreateSale() {
                         onChange={(e) => onValueNewProductChange(e)}
                       >
                         {productList.map((product) => (
-                          <MenuItem value={product._id}>{product._id}</MenuItem>
+                          <MenuItem value={product._id}>{product.name}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>

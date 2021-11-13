@@ -3,7 +3,7 @@ import { Table, TableHead, TableCell, TableRow, TableBody, Button, makeStyles } 
 import { getSale, deleteSale } from '../../services/SalesService';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom';
-import { getCurrentUser } from '../../services/AuthService';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const initialValue = {
     "products": [],
@@ -46,14 +46,13 @@ const useStyles = makeStyles({
 export function SaleDetail() {
     const classes = useStyles();
     const [sale, setSale] = useState(initialValue);
-    const [user, setUser] = useState([])
+    const { isAuthenticated } = useAuth0();
     const history = useHistory();
 
     const { id } = useParams();
 
     useEffect(() => {
         loadSaleData(id);
-        setUser(getCurrentUser());
     }, [])
 
     const loadSaleData = async (id) => {
@@ -79,7 +78,7 @@ export function SaleDetail() {
                         <TableCell>Id Cliente: {sale.clientId}</TableCell>
                         <TableCell>Nombre Cliente: {sale.clientName}</TableCell>
                         <TableCell>Id Vendedor: {sale.sellerId}</TableCell>
-                        {user && (
+                        {isAuthenticated && (
                             <TableCell className={classes.button_add}>
                                 <Button className={classes.button} variant="contained" component={Link} to={`editar/${sale._id}`} color="primary">Editar</Button>
                                 <Button variant="contained" color="secondary" onClick={() => deleteSaleData(sale._id)} >Eliminar</Button>
@@ -100,7 +99,7 @@ export function SaleDetail() {
                 {
                         sale.products.map(product => (
                             <TableRow className={classes.row} key={product._id}>
-                                <TableCell>{product._id}</TableCell>
+                                <TableCell>{product.name}</TableCell>
                                 <TableCell>{product.price}</TableCell>
                                 <TableCell>{product.amount}</TableCell>
                             </TableRow>

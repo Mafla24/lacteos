@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   FormGroup,
   FormControl,
@@ -12,9 +12,8 @@ import {
   FormControlLabel,
   Radio,
 } from "@material-ui/core";
-import { editProduct, getProduct } from "../../services/ProductService";
-import { useHistory, useParams } from "react-router-dom";
-import { verifyToken } from "../../services/AuthService";
+import { addProduct } from "../../services/ProductService";
+import { useHistory } from "react-router-dom";
 
 const initialValue = {
   name: "",
@@ -26,32 +25,22 @@ const initialValue = {
 const useStyles = makeStyles({
   container: {
     width: "30%",
-    margin: "100px auto 0 auto",
+    margin: "10px auto 0 auto",
     "& > *": {
       marginTop: 20,
     },
   },
 });
 
-export function EditProduct() {
+export function CreateProduct() {
   const [product, setProduct] = useState(initialValue);
   const { name, desc, price, state } = product;
+
   const classes = useStyles();
   let history = useHistory();
 
-  const { id } = useParams();
-
-  useEffect(() => {
-    verifyToken();
-    loadProductData();
-  }, []);
-
-  const loadProductData = async () => {
-    let response = await getProduct(id);
-    setProduct(response.data.data);
-  };
-
   const onValueChange = (e) => {
+    e.preventDefault();
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
@@ -59,14 +48,14 @@ export function EditProduct() {
     setProduct({ ...product, state: state });
   };
 
-  const updateProductData = async () => {
-    await editProduct(product);
+  const addProductData = async () => {
+    await addProduct(product);
     history.push("/productos");
   };
 
   return (
     <FormGroup className={classes.container}>
-      <Typography variant="h4">Editar Producto</Typography>
+      <Typography variant="h4">Agregar Producto</Typography>
       <FormControl>
         <InputLabel htmlFor="my-input">Nombre</InputLabel>
         <Input
@@ -118,10 +107,10 @@ export function EditProduct() {
       <FormControl>
         <Button
           variant="contained"
-          onClick={() => updateProductData()}
+          onClick={(e) => addProductData()}
           color="primary"
         >
-          Editar Producto
+          Agregar Producto
         </Button>
       </FormControl>
     </FormGroup>

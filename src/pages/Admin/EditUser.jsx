@@ -16,12 +16,10 @@ import {
 } from "@material-ui/core";
 import { editUser, getUser } from "../../services/UsersService";
 import { useHistory, useParams } from "react-router-dom";
-import { verifyToken } from "../../services/AuthService";
 
 const initialValue = {
   email: "",
   name: "",
-  password: "",
   isAdmin: false,
   status: '',
   tel: '',
@@ -39,14 +37,13 @@ const useStyles = makeStyles({
 
 export function EditUser() {
   const [user, setUser] = useState(initialValue);
-  const { email, password, name, tel, isAdmin, status } = user;
+  const { email, name, tel, isAdmin, status } = user;
   const classes = useStyles();
   let history = useHistory();
 
   const { id } = useParams();
 
   useEffect(() => {
-    verifyToken();
     loadUserData();
   }, []);
 
@@ -83,16 +80,6 @@ export function EditUser() {
           type="text"
           readOnly disabled
           value={email}
-          id="my-input"
-        />
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="my-input">Password</InputLabel>
-        <Input
-          onChange={(e) => onValueChange(e)}
-          type="password" 
-          name="password"
-          value={password}
           id="my-input"
         />
       </FormControl>

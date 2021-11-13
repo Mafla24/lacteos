@@ -1,19 +1,21 @@
-import axios from "axios";
+//import axios from "axios";
 import { authHeaders } from "./AuthService";
+var axios = require("axios").default;
 
 const usersUrl = "https://frozen-earth-23023.herokuapp.com/usuarios";
 //const usersUrl = "http://localhost:4000/usuarios";
+//const usersUrl = "http://dev-qrqxbza8.us.auth0.com";
+
 
 export const getUser = async (id) => {
     return await axios.get(`${usersUrl}/${id}`, { headers: authHeaders });
 }
-
 export const getUsers = async () => {
     return await axios.get(`${usersUrl}`, { headers: authHeaders })
 }
 
 export const createUser = async (user) => {
-    return await axios.post(`${usersUrl}/`, user);
+    return await axios.post(`${usersUrl}`, user);
 }
 
 export const editUser = async (user) => {
